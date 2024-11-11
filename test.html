@@ -1,0 +1,135 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Household Services</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Basic styling for layout and responsiveness */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; }
+    header, .service-section, .how-it-works, .why-choose-us, .testimonials, .booking, footer { padding: 40px 20px; }
+    header { background: #4CAF50; color: #fff; text-align: center; padding: 80px 20px; }
+    header h1 { font-size: 3em; }
+    header p { font-size: 1.2em; }
+    .btn { padding: 10px 20px; background: #ff6b6b; color: #fff; border: none; cursor: pointer; border-radius: 5px; }
+    .service-section, .how-it-works, .why-choose-us, .testimonials, .booking { max-width: 1000px; margin: auto; text-align: center; }
+    .services, .features, .reviews { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .service, .feature, .review { flex: 1 1 200px; padding: 20px; background: #f9f9f9; border-radius: 8px; text-align: center; }
+    footer { background: #333; color: #fff; text-align: center; }
+    footer a { color: #ff6b6b; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header>
+    <h1>Your Home, Our Priority</h1>
+    <p>Professional services to keep your home in top shape.</p>
+    <button class="btn">Book Now</button>
+  </header>
+
+  <!-- Service Highlights -->
+  <section class="service-section">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Cleaning</h3>
+        <p>Thorough cleaning for every room in your home.</p>
+      </div>
+      <div class="service">
+        <h3>Plumbing</h3>
+        <p>Expert plumbing repairs and maintenance.</p>
+      </div>
+      <div class="service">
+        <h3>Electrical</h3>
+        <p>Professional electrical installations and repairs.</p>
+      </div>
+      <div class="service">
+        <h3>Landscaping</h3>
+        <p>Beautiful and well-maintained outdoor spaces.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="features">
+      <div class="feature">
+        <h4>1. Book a Service</h4>
+        <p>Choose the service you need and schedule a date.</p>
+      </div>
+      <div class="feature">
+        <h4>2. We Work</h4>
+        <p>Our experts arrive on time and do the job right.</p>
+      </div>
+      <div class="feature">
+        <h4>3. Enjoy Your Home</h4>
+        <p>Relax with a clean, safe, and beautiful home.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <div class="features">
+      <div class="feature">
+        <h4>Trustworthy Professionals</h4>
+        <p>All our staff are trained and background checked.</p>
+      </div>
+      <div class="feature">
+        <h4>Quality Assurance</h4>
+        <p>We guarantee satisfaction with every service.</p>
+      </div>
+      <div class="feature">
+        <h4>Flexible Scheduling</h4>
+        <p>Book a time that works best for you.</p>
+      </div>
+      <div class="feature">
+        <h4>Eco-Friendly Products</h4>
+        <p>We use safe and sustainable cleaning solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews">
+      <div class="review">
+        <p>"They did an amazing job! My house has never been cleaner."</p>
+        <p>- Sarah T.</p>
+      </div>
+      <div class="review">
+        <p>"Reliable and professional. Highly recommended!"</p>
+        <p>- James W.</p>
+      </div>
+      <div class="review">
+        <p>"Great service at a fair price. I'll definitely use them again."</p>
+        <p>- Maria K.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section class="booking">
+    <h2>Book Your Service</h2>
+    <form action="#" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <input type="date" name="date" required><br>
+      <textarea name="service-details" placeholder="Service Details" required></textarea><br>
+      <button class="btn" type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Household Services. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+  </footer>
+
+</body>
+</html>
