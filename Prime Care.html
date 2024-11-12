@@ -8,12 +8,45 @@
     header {
   color: black;
   text-align: center;
-  padding: 0px 10px;
+  padding: 10px 20px;
   background: linear-gradient(45deg, #a8e063, #74dd44, #8fd3f4, #91eae4, #76b852);
   background-size: 600% 600%; 
   animation: gradientShift 10s ease infinite; 
 }
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding: 0px 0;
+}
 
+.login-button {
+  margin-left: auto;
+  <hr>
+  padding: 10px 20px;
+  background: #000B58;
+  color: #F3F3E0;
+  border-radius: 5px;
+  cursor: pointer;
+  align-content: end;
+}
+.login-button:hover {
+  background-color: #000000;
+  color: beige;
+}
+
+.btn {
+  padding: 0px 0px;
+  background: #000B58;
+  color: #F3F3E0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn:hover {
+  background: #543310;
+  color: beige;
+}
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%; 
@@ -42,8 +75,8 @@
                 cursor: pointer;
                 transition: background-color 0.3s ease, color 0.3s ease;
             }.btn:hover {
-                background: #000000; 
-                color: beige ;            
+                background: #543310; 
+                color: #F5F5F5 ;            
             }
 
     .service-image-container {
@@ -88,6 +121,9 @@
 <body>
   
   <header>
+    <div class="header-top">
+      <button class="login-button">Login</button>
+    </div>
     <img width="250" src="logo_final.png"></img>
     <h1>Your Home, Our Priority</h1>
     <p>Professional services to keep your home in top shape.</p>
