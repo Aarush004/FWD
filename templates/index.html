@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Prime Care</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+header {
+  color: black;
+  text-align: center;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #a8e063, #8fd3f4, #91eae4, #76b852);
+  background-size: 600% 600%; 
+  animation: gradientShift 10s ease infinite; 
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0;
+}
+
+.login-button {
+  margin-left: auto;
+  padding: 05px 15px;
+  background: #000B58;
+  color: #F3F3E0;
+  border-radius: 5px;
+  cursor: pointer;
+  align-content: end;
+}
+.login-button:hover {
+  background-color: #133E87;
+  color: beige;
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%; 
+  }
+  50% {
+    background-position: 100% 50%; 
+  }
+  100% {
+    background-position: 0% 50%; 
+  }
+}
+    
+body {
+  font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333;
+}
+header, .service-section, .how-it-works, .why-choose-us, .testimonials, .booking, footer { 
+  padding: 40px 20px;
+}
+header h1 { 
+  font-size: 3em;
+}
+header p {
+  font-size: 1.2em;
+}
+.btn {
+  padding: 10px 20px; background: #000B58; color: #F3F3E0; border: none; cursor: pointer; border-radius: 5px;
+}
+.service-section, .how-it-works, .why-choose-us, .testimonials, .booking {
+  max-width: 1000px; margin: auto; text-align: center;
+}
+.services, .features, .reviews {
+  display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+}
+.service, .feature, .review {
+  flex: 1 1 200px; padding: 20px; background: #f9f9f9; border-radius: 8px; text-align: center;
+}
+footer {
+  background: #006A67; color: #F3F3E0; text-align: center;
+}
+footer a {
+  color: #003161; text-decoration:underline;
+}
+.btn {
+  color: #F3F3E0;
+  background: #000B58;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn:hover {
+  background: #133E87; 
+  color: #F5F5F5 ;            
+}
+
+.service-image-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.service-image-container:hover {
+  transform: scale(1.05);
+}
+
+.service-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.service-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background-color: rgba(0, 11, 88, 0.8);
+  color: #F3F3E0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-image-container:hover .service-button {
+  opacity: 1;
+}
+  </style>
+</head>
+
+<body>  
+  <header>
+    <div class="header-top">
+	    <a href="{{login_page_link}}"><button class="login-button">Login</button></a>
+    </div>
+    <img width="250" src="static/logo_final.png"></img>
+    <h1>Your Home, Our Priority</h1>
+    <p>Professional services to keep your home in top shape.</p>
+    <a href="{{booking_page_link}}"><button class="btn">Book Now</button></a>
+  </header>
+
+  <section class="service-section">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service">
+        <div class="service-image-container">
+          <img src="static/image.png" alt="Room Cleaning" />
+        </div>
+        <h3>Room Cleaning</h3>
+        <p>Transforming Rooms, One Shine at a Time!</p>
+      </div>
+      <div class="service">
+        <div class="service-image-container">
+          <img src="static/bth.png" alt="Bathroom Cleaning" />
+        </div>
+        <h3>Bathroom Cleaning</h3>
+        <p>Sparkling Clean, Fresh and Pristine!</p>
+      </div>
+      <div class="service">
+        <div class="service-image-container">
+          <img src="static/elec.png" alt="Electrical Servives" />
+        </div>
+        <h3>Electrical</h3>
+        <p>Professional electrical installations and repairs.</p>
+      </div>
+      <div class="service">
+        <div class="service-image-container">
+          <img src="static/paint.png" alt="Painting" />
+        </div>
+        <h3>Full House Painting</h3>
+        <p>A Fresh Coat, A Beautiful Home! Let's Paint Your Dream Space.</p>
+      </div>
+      <div class="service">
+        <div class="service-image-container">
+          <img src="static/carpet.png" alt="Carpet Cleaning" />
+        </div>
+        <h3>Carpet Cleaning</h3>
+        <p>Bringing Freshness Back to Your Floors, One Clean at a Time!</p>
+      </div>
+      <div class="service">
+        <div class="service-image-container">
+          <img src="static/pest.png" alt="Pest Control" />
+        </div>
+        <h3>Pest Control</h3>
+        <p>Eliminating Pests, Restoring Peace to Your Home!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="features">
+      <div class="feature">
+        <h4>1. Book a Service</h4>
+        <p>Choose the service you need and schedule a date.</p>
+      </div>
+      <div class="feature">
+        <h4>2. We Work</h4>
+        <p>Our experts arrive on time and do the job right.</p>
+      </div>
+      <div class="feature">
+        <h4>3. Enjoy Your Home</h4>
+        <p>Relax with a clean, safe, and beautiful home.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <div class="features">
+      <div class="feature">
+        <h4>Trustworthy Professionals</h4>
+        <p>All our staff are trained and background checked.</p>
+      </div>
+      <div class="feature">
+        <h4>Quality Assurance</h4>
+        <p>We guarantee satisfaction with every service.</p>
+      </div>
+      <div class="feature">
+        <h4>Flexible Scheduling</h4>
+        <p>Book a time that works best for you.</p>
+      </div>
+      <div class="feature">
+        <h4>Eco-Friendly Products</h4>
+        <p>We use safe and sustainable cleaning solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews">
+      <div class="review">
+        <p>"They did an amazing job! My house has never been cleaner."</p>
+        <p>- Sarah T.</p>
+      </div>
+      <div class="review">
+        <p>"Reliable and professional. Highly recommended!"</p>
+        <p>- James W.</p>
+      </div>
+      <div class="review">
+        <p>"Great service at a fair price. I'll definitely use them again."</p>
+        <p>- Maria K.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Household Services. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+  </footer>
+
+</body>
+</html>
