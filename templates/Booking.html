@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Book Your Service</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #006A67;
+      color: #F3F3E0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .form-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-size: 1.1em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .form-group button {
+      background-color: #000B58;
+      color: #F3F3E0;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .form-group button:hover {
+      background-color: #543310;
+      color: #F5F5F5;
+    }
+
+    header {
+      color: black;
+      text-align: center;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #a8e063, #8fd3f4, #91eae4, #76b852);
+      background-size: 600% 600%; 
+      animation: gradientShift 10s ease infinite; 
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%; 
+      }
+      50% {
+        background-position: 100% 50%; 
+      }
+      100% {
+        background-position: 0% 50%; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Book Your Service</h1>
+  </header>
+
+  <div class="form-container">
+    <h2>Service Booking Form</h2>
+    <form action="/Prime Care.html" method="POST">
+      <div class="form-group">
+        <label for="service">Select Service</label>
+        <select id="service" name="service" required>
+          <option value="room-cleaning">Room Cleaning</option>
+          <option value="bathroom-cleaning">Bathroom Cleaning</option>
+          <option value="electrical">Electrical</option>
+          <option value="full-house-painting">Full House Painting</option>
+          <option value="carpet-cleaning">Carpet Cleaning</option>
+          <option value="pest-control">Pest Control</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Your Phone Number</label>
+        <input type="number" id="phone" name="phone" required placeholder="Enter your phone number">
+      </div>
+
+      <div class="form-group">
+        <label for="date">Preferred Service Date</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="special-requests">Special Requests (Optional)</label>
+        <textarea id="special-requests" name="special-requests" placeholder="Enter any specific instructions or requests" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Book Now</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
