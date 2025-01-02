@@ -4,6 +4,7 @@ from flask import request
 from flask import redirect
 import sqlite3
 import time
+import datetime
 
 app = Flask(__name__)
 
@@ -34,7 +35,7 @@ def init_db():
     c.execute('''CREATE TABLE IF NOT EXISTS orders
     (order_id INTEGER PRIMARY KEY AUTOINCREMENT,
     customer_id VARCHAR NOT NULL,
-    contractor_id VARCHAR NOT NULL,
+    contractor_id VARCHAR,
     service VARCHAR NOT NULL,
     doa DATE NOT NULL,
     doc DATE,
@@ -55,7 +56,7 @@ def index():
     else:
         return render_template("index.html",left_button_text = "Login", login_page_link = "Login")
                                                 
-@app.route("/Booking")
+@app.route("/Booking", methods = ["GET", "POST"])
 def booking():
     conn = sqlite3.connect("project.db")
     c = conn.cursor()
@@ -65,12 +66,24 @@ def booking():
     id=logged_in_id
     phone=c.execute("select phone from customer where id='"+logged_in_id+"'").fetchone() #returning name
     address=c.execute("select address from customer where id='"+logged_in_id+"'").fetchone()
-    if logged_in_flag and name!=None and phone!=None and address!=None:
-        return render_template("Booking.html", name = name[0], phone = phone[0], address = address[0])
-    elif logged_in_flag:
-        return redirect("/Dashboard")
-    else:
-        return redirect("/Login")
+    if request.method == "GET":
+        if logged_in_flag and name!=None and phone!=None and address!=None:
+            return render_template("Booking.html", name = name[0], phone = phone[0], address = address[0])
+        elif logged_in_flag:
+            return redirect("/Dashboard")
+        else:
+            return redirect("/Login")
+    if request.method == "POST":
+        # checking if expected date is after the current date
+        x = request.form["date"]
+        exp_date = datetime.datetime(int(x[:4]), int(x[5:7]),int(x[-2:]))
+        if exp_date > datetime.datetime.now():
+            c.execute("insert into orders (customer_id, service, doa) values('"+id+"','"+request.form["service"]+"','"+x+"')")
+            conn.commit()
+            return redirect("/Dashboard")
+        else:
+            return render_template("Booking.html", name = name[0], phone = phone[0], address = address[0], error = "Date cannot be before today")
+
 
 @app.route("/Login", methods = ["GET", "POST"])
 def login():
