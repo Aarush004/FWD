@@ -154,6 +154,7 @@
         <section class="card">
             <h3>Previous Orders</h3>
             <div class="orders">
+                {{empty_prev_orders}}
                 {% for order in prev_orders %}
                 <div class="order">
                     <div class="order-title">Order ID:</div>

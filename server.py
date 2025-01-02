@@ -31,8 +31,8 @@ def init_db():
     FOREIGN KEY(id) REFERENCES auth(id)
     )
     ''')
-    c.execute('''CREATE TABLE IF NOT EXISTS customer
-    (order_id INTEGER PRIMARY KEY,
+    c.execute('''CREATE TABLE IF NOT EXISTS orders
+    (order_id INTEGER PRIMARY KEY AUTOINCREMENT,
     customer_id VARCHAR NOT NULL,
     contractor_id VARCHAR NOT NULL,
     service VARCHAR NOT NULL,
@@ -61,10 +61,10 @@ def booking():
     c = conn.cursor()
     global logged_in_id
     logged_in_id = str(logged_in_id)
-    name=c.execute("select name from customer where id="+logged_in_id).fetchone() #returning phone no dont know why
+    name=c.execute("select name from customer where id='"+logged_in_id+"'").fetchone() #returning phone no dont know why
     id=logged_in_id
-    phone=c.execute("select phone from customer where id="+logged_in_id).fetchone() #returning name
-    address=c.execute("select address from customer where id="+logged_in_id).fetchone()
+    phone=c.execute("select phone from customer where id='"+logged_in_id+"'").fetchone() #returning name
+    address=c.execute("select address from customer where id='"+logged_in_id+"'").fetchone()
     if logged_in_flag and name!=None and phone!=None and address!=None:
         return render_template("Booking.html", name = name[0], phone = phone[0], address = address[0])
     elif logged_in_flag:
@@ -85,7 +85,7 @@ def login():
         if c.execute("select id from auth where id='"+request.form["user_id"]+"'").fetchone() == None:
             return render_template("Login.html", error="User not found.")
         #checking if password is correct and logging in
-        elif request.form["pass"] == c.execute("select pass from auth where id="+request.form["user_id"]).fetchone()[0]:
+        elif request.form["pass"] == c.execute("select pass from auth where id='"+request.form["user_id"]+"'").fetchone()[0]:
             global logged_in_flag
             global logged_in_id
             logged_in_flag=True
@@ -119,21 +119,24 @@ def dashboard():
     c = conn.cursor()
     global logged_in_id
     logged_in_id = str(logged_in_id)
-    name=c.execute("select name from customer where id="+logged_in_id).fetchone() #returning phone no dont know why
+    name=c.execute("select name from customer where id='"+logged_in_id+"'").fetchone() #returning phone no dont know why
     id=logged_in_id
-    phone=c.execute("select phone from customer where id="+logged_in_id).fetchone() #returning name
-    address=c.execute("select address from customer where id="+logged_in_id).fetchone()
+    phone=c.execute("select phone from customer where id='"+logged_in_id+"'").fetchone() #returning name
+    address=c.execute("select address from customer where id='"+logged_in_id+"'").fetchone()
     if request.method == "GET":
         if name!=None and phone!=None and address!=None:
-            c.execute("select order_id, servic,")
-            return render_template("Dashboard_filled.html", name=name[0], id=id, phone=phone[0],address=address[0])
+            prev_orders=c.execute("select order_id, service,doa,doc from orders").fetchall()
+            if prev_orders != None:
+                return render_template("Dashboard_filled.html", name=name[0], id=id, phone=phone[0],address=address[0], prev_orders=prev_orders)
+            else:
+                return render_template("Dashboard_filled.html", name=name[0], id=id, phone=phone[0],address=address[0], empty_prev_orders="You haven't made any orders yet.")
         else:
             return render_template("Dashboard_empty.html",id=id)
     elif request.method == "POST":
         name=request.form["name"]
         phone=request.form["phone"]
         address=request.form["address"]
-        c.execute("insert into customer values("+id+",'"+phone+"',"+name+",'"+address+"')")
+        c.execute("insert into customer values('"+id+"','"+phone+"','"+name+"','"+address+"')")
         conn.commit()
         return render_template("Dashboard_filled.html", name=name, id=id, phone=phone,address=address, success="Values updated successfully")
 if __name__ == "__main__":
