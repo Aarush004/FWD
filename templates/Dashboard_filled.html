@@ -124,6 +124,9 @@
         <p>Welcome, {{name}}! Here's your account summary.</p>
     </header>
 
+    <div class="success">
+        {{success}}
+    </div>
     <div class="container">
    
         <section class="card">
@@ -134,7 +137,7 @@
                     <div class="detail-value">{{name}}</div>
                 </div>
                 <div class="detail">
-                    <div class="detail-title">ID:</div>
+                    <div class="detail-title">Username:</div>
                     <div class="detail-value">{{id}}</div>
                 </div>
                 <div class="detail">
@@ -177,15 +180,12 @@
                 </div>
             </div>
         </section>
-        <div class="success">
-            {{success}}
-        </div>
         <div style="text-align: center; margin-top: 20px;">
             <a href="/">
                 <button onclick="window.location.href='/'">Home</button>
             </a>
-            <a href="Booking_User">
-                <button onclick="window.location.href='Booking_User'">New Booking</button>
+            <a href="Booking">
+                <button onclick="window.location.href='Booking'">New Booking</button>
             </a>
         </div>
     </div>

@@ -37,8 +37,8 @@ def init_db():
     contractor_id INTEGER NOT NULL,
     service VARCHAR NOT NULL,
     doa DATE NOT NULL,
-    doc DATE NOT NULL,
-    amount INTEGER NOT NULL,
+    doc DATE,
+    amount INTEGER DEFAULT 2000,
     FOREIGN KEY(customer_id) REFERENCES customer(id),
     FOREIGN KEY(contractor_id) REFERENCES contractor(id)
     )
@@ -51,16 +51,26 @@ logged_in_id=0
 @app.route("/")
 def index():
     if logged_in_flag:
-        return render_template("index.html",left_button_text = "Dashboard", login_page_link = "Dashboard", booking_page_link = "Booking")
+        return render_template("index.html",left_button_text = "Dashboard", login_page_link = "Dashboard")
     else:
-        return render_template("index.html",left_button_text = "Login", login_page_link = "Login", booking_page_link = "Booking")
+        return render_template("index.html",left_button_text = "Login", login_page_link = "Login")
                                                 
 @app.route("/Booking")
 def booking():
+    conn = sqlite3.connect("project.db")
+    c = conn.cursor()
+    global logged_in_id
+    logged_in_id = str(logged_in_id)
+    name=c.execute("select name from customer where id="+logged_in_id).fetchone() #returning phone no dont know why
+    id=logged_in_id
+    phone=c.execute("select phone from customer where id="+logged_in_id).fetchone() #returning name
+    address=c.execute("select address from customer where id="+logged_in_id).fetchone()
     if logged_in_flag and name!=None and phone!=None and address!=None:
-        return render_template("Booking_User.html")
+        return render_template("Booking.html", name = name[0], phone = phone[0], address = address[0])
+    elif logged_in_flag:
+        return redirect("/Dashboard")
     else:
-        return render_template("Booking_Guest.html")
+        return redirect("/Login")
 
 @app.route("/Login", methods = ["GET", "POST"])
 def login():
@@ -122,7 +132,7 @@ def dashboard():
         name=request.form["name"]
         phone=request.form["phone"]
         address=request.form["address"]
-        c.execute("insert into customer values("+id+",'"+name+"',"+phone+",'"+address+"')")
+        c.execute("insert into customer values("+id+",'"+phone+"',"+name+",'"+address+"')")
         conn.commit()
         return render_template("Dashboard_filled.html", name=name, id=id, phone=phone,address=address, success="Values updated successfully")
 if __name__ == "__main__":
