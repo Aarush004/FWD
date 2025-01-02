@@ -97,6 +97,12 @@
         .button-link {
             text-decoration: none;
         }
+        .error {
+            color: red;
+        }
+        .success {
+            color:limegreen;
+        }
     </style>
 </head>
 <body>
@@ -107,14 +113,19 @@
                 <h5>Email or Mobile Number</h5>
                 <input type="text" placeholder="Enter your email or phone number" name="user_id">
                 <h5>Password</h5>
-                <input type="password" placeholder="Enter your password" name="pass">
+                <input type="password" placeholder="Enter your password" name="pass1">
                 <h5>Confirm Password</h5>
-                <input type="password" placeholder="Confirm your password" name="pass">
+                <input type="password" placeholder="Confirm your password" name="pass2">
 		<br>
+        <div class="error">
+            {{ error }}
+        </div>
+        <div class="success">
+            {{ success }}
+        </div>
 		<input type="submit" name="go">
 	    </form>
-	    <br>
-	        <a href="Login">Returning User? Log In here.</a>
+	    <a href="Login">Returning User? Log In here.</a>
         </div>
     </div>
 </body>

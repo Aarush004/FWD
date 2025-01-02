@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Customer Dashboard - Prime Care</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(45deg, #a8e063, #8fd3f4, #91eae4, #76b852);
+            background-size: 600% 600%;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        header img {
+            width: 100px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin-top: 10px;
+            font-size: 2em;
+            color: #fff;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+           } 
+        }
+
+        header {
+            color: black;
+            text-align: center;
+            padding: 20px;
+            background-color: #76b852;
+            color: #F3F3E0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #fef9e4;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+        }
+
+        .details, .orders {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .detail, .order {
+            flex: 1 1 calc(50% - 20px);
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .detail-title, .order-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #006A67;
+            color: #F3F3E0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #000B58;
+            color: #F3F3E0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #133E87;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="static/New_User.png" alt="User Profile">
+        <h1>Customer Dashboard</h1>
+        <p>Welcome! Please enter your account details.</p>
+    </header>
+    <form method="POST">
+    <div class="container">
+   
+        <section class="card">
+            <h3>Customer Details</h3>
+            <div class="details">
+                <div class="detail">
+                    <div class="detail-title">Name:</div>
+                    <input type="text" placeholder="Enter Name" name="name">
+                </div>
+                <div class="detail">
+                    <div class="detail-title">ID:</div>
+                    <div class="detail-value">{{id}}</div>
+                </div>
+                <div class="detail">
+                    <div class="detail-title">Phone:</div>
+                    <input type="number" placeholder="Enter Phone Number" name="phone">
+                </div>
+                <div class="detail">
+                    <div class="detail-title">Address:</div>
+                    <input type="text" placeholder="Enter Address" name="address">
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="/">
+                <button onclick="window.location.href='/'">Home</button>
+            </a>
+            <input type="submit" name="go">
+        </div>
+    </div>
+    </form>
+
+    <footer>
+        <p>&copy; 2023 Prime Care. All rights reserved.</p>
+    </footer>
+</body>
+</html>
