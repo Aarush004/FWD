@@ -82,7 +82,7 @@ def login():
         conn = sqlite3.connect("project.db")
         c = conn.cursor()
         #checking if no user exists
-        if c.execute("select id from auth where id="+request.form["user_id"]).fetchone() == None:
+        if c.execute("select id from auth where id='"+request.form["user_id"]+"'").fetchone() == None:
             return render_template("Login.html", error="User not found.")
         #checking if password is correct and logging in
         elif request.form["pass"] == c.execute("select pass from auth where id="+request.form["user_id"]).fetchone()[0]:
@@ -139,3 +139,5 @@ if __name__ == "__main__":
     init_db()
     app.debug = True
     app.run()
+
+# select order_id, service, doa, doc, 
