@@ -11,12 +11,12 @@ def init_db():
     conn = sqlite3.connect("project.db")
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS auth
-    (id INTEGER PRIMARY KEY,
+    (id VARCHAR PRIMARY KEY,
     pass VARCHAR NOT NULL,
     acc_type VARCHAR NOT NULL)
     ''')
     c.execute('''CREATE TABLE IF NOT EXISTS customer
-    (id INTEGER PRIMARY KEY,
+    (id VARCHAR PRIMARY KEY,
     phone INTEGER NOT NULL,
     name VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
@@ -24,7 +24,7 @@ def init_db():
     )
     ''')
     c.execute('''CREATE TABLE IF NOT EXISTS contractor
-    (id INTEGER PRIMARY KEY,
+    (id VARCHAR PRIMARY KEY,
     phone INTEGER NOT NULL,
     name VARCHAR NOT NULL,
     service VARCHAR NOT NULL,
@@ -33,8 +33,8 @@ def init_db():
     ''')
     c.execute('''CREATE TABLE IF NOT EXISTS customer
     (order_id INTEGER PRIMARY KEY,
-    customer_id INTEGER NOT NULL,
-    contractor_id INTEGER NOT NULL,
+    customer_id VARCHAR NOT NULL,
+    contractor_id VARCHAR NOT NULL,
     service VARCHAR NOT NULL,
     doa DATE NOT NULL,
     doc DATE,
@@ -105,8 +105,8 @@ def sign_up():
         # checking if both passes are same
         if request.form["pass1"]==request.form["pass2"]:
              # checking if no user exists
-            if c.execute("select id from auth where id="+request.form["user_id"]).fetchone() == None:
-                c.execute("insert into auth values("+request.form["user_id"]+","+request.form["pass1"]+", 'cust')")
+            if c.execute("select id from auth where id='"+request.form["user_id"]+"'").fetchone() == None:
+                c.execute("insert into auth values('"+request.form["user_id"]+"','"+request.form["pass1"]+"', 'cust')")
                 conn.commit()
                 return render_template("Sign_Up.html", success = "User created succesfully, please login.")
             else:
@@ -125,6 +125,7 @@ def dashboard():
     address=c.execute("select address from customer where id="+logged_in_id).fetchone()
     if request.method == "GET":
         if name!=None and phone!=None and address!=None:
+            c.execute("select order_id, servic,")
             return render_template("Dashboard_filled.html", name=name[0], id=id, phone=phone[0],address=address[0])
         else:
             return render_template("Dashboard_empty.html",id=id)
