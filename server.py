@@ -52,9 +52,14 @@ logged_in_id=0
 @app.route("/")
 def index():
     if logged_in_flag:
-        return render_template("index.html",left_button_text = "Dashboard", login_page_link = "Dashboard")
+        conn = sqlite3.connect("project.db")
+        c = conn.cursor()
+        if c.execute("select acc_type from auth where id='"+logged_in_id+"'").fetchone()[0] == "contractor":
+            return render_template("index.html",left_button_text = "Dashboard", login_page_link = "Dashboard", middle_button_link="Order",middle_button_text="Orders")
+        else:
+            return render_template("index.html",left_button_text = "Dashboard", login_page_link = "Dashboard", middle_button_link="Booking",middle_button_text="Book Now")
     else:
-        return render_template("index.html",left_button_text = "Login", login_page_link = "Login")
+        return render_template("index.html",left_button_text = "Login", login_page_link = "Login", middle_button_link="Booking",middle_button_text="Book Now")
                                                 
 @app.route("/Booking", methods = ["GET", "POST"])
 def booking():
@@ -119,7 +124,11 @@ def sign_up():
         if request.form["pass1"]==request.form["pass2"]:
              # checking if no user exists
             if c.execute("select id from auth where id='"+request.form["user_id"]+"'").fetchone() == None:
-                c.execute("insert into auth values('"+request.form["user_id"]+"','"+request.form["pass1"]+"', 'cust')")
+                # Checking for customer:
+                if request.form.get("s1") == None:
+                    c.execute("insert into auth values('"+request.form["user_id"]+"','"+request.form["pass1"]+"', 'customer')")
+                else:
+                    c.execute("insert into auth values('"+request.form["user_id"]+"','"+request.form["pass1"]+"', 'contractor')")
                 conn.commit()
                 return render_template("Sign_Up.html", success = "User created succesfully, please login.")
             else:
@@ -152,6 +161,10 @@ def dashboard():
         c.execute("insert into customer values('"+id+"','"+phone+"','"+name+"','"+address+"')")
         conn.commit()
         return render_template("Dashboard_filled.html", name=name, id=id, phone=phone,address=address, success="Values updated successfully")
+
+@app.route("/Order", methods = ["GET", "POST"])
+def order():
+    return render_template("Order.html")
 if __name__ == "__main__":
     init_db()
     app.debug = True
